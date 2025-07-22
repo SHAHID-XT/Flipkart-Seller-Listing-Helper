@@ -1,0 +1,52 @@
+{
+  "name": "Flipkart Listing Helper...",
+  "version": "1.2",
+  "manifest_version": 3,
+  "description": "Automates Flipkart listing creation process for sellers with advanced form automation and data management.",
+  "author": "ShahidXt",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "icons": {
+    "16": "icons/icon.png",
+    "32": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon.png",
+      "32": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
+    },
+    "default_title": "Flipkart Listing Helper"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://seller.flipkart.com/*"
+      ],
+      "js": [
+        "backend.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "reception-0.svg",
+        "reception-4.svg"
+      ],
+      "matches": [
+        "https://seller.flipkart.com/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flipkart Listing Helper</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Flipkart Listing Helper</h1>
+      <p>By Shahid-XT</p>
+    </header>
+
+    <div id="notification-area"></div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-edit"></i>
+        <h2>Listing Details</h2>
+      </div>
+      <div class="card-body">
+        <form id="listingForm">
+          <div class="form-group">
+            <label for="sku">SKU ID</label>
+            <input type="text" id="sku" name="sku" placeholder="SKU..." required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="listingStatus">Listing Status</label>
+              <select id="listingStatus" name="listingStatus" required>
+                <option value="A" selected>Active</option>
+                <option value="I">Inactive</option>
+              </select>
+            </div>
+            <div class="form-group half">
+              <label for="fulfilment">Fulfillment by</label>
+              <select id="fulfilment" name="fulfilment" required>
+                <option value="S" selected>Seller</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="mrp">MRP</label>
+              <input type="text" name="mrp" placeholder="MRP" required>
+            </div>
+            <div class="form-group half">
+              <label for="price">Price</label>
+              <input type="text" name="price" placeholder="Price" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="minOq">Min Order Qty</label>
+              <input type="text" id="minOq" name="minOq" placeholder="MinOQ" required>
+            </div>
+            <div class="form-group half">
+              <label for="stock">Stock</label>
+              <input type="text" id="stock" name="stock" placeholder="Stock" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="procurementType">Procurement Type</label>
+              <select id="procurementType" name="procurementType" required>
+                <option value="I" selected>Instock</option>
+                <option value="E">Express</option>
+              </select>
+            </div>
+            <div class="form-group half">
+              <label for="sla">SLA</label>
+              <input type="text" id="sla" name="sla" placeholder="SLA" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="shippingProvider">Shipping provider</label>
+            <select id="shippingProvider" name="shippingProvider" required>
+              <option value="F" selected>Flipkart</option>
+            </select>
+          </div>
+          
+          <div class="form-toggle">
+            <label class="toggle">
+              <input type="checkbox" class="isdelivary" name="isdelivaryyyy" style="display:none;">
+              <span class="toggle-slider"></span>
+              <span class="toggle-label">Enable Delivery</span>
+            </label>
+          </div>
+          
+          <div id="isdelivary" class="conditional-section show">
+            <div class="form-group">
+              <label for="localDeliveryCharge">Local delivery charge</label>
+              <input type="text" id="localDeliveryCharge" name="localDeliveryCharge" placeholder="Local delivery charge" value="0" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="zonalDeliveryCharge">Zonal charge</label>
+                <input type="text" id="zonalDeliveryCharge" name="zonalDeliveryCharge" placeholder="Zonal delivery charge" value="0" required>
+              </div>
+              <div class="form-group half">
+                <label for="nationalDeliveryCharge">National charge</label>
+                <input type="text" id="nationalDeliveryCharge" name="nationalDeliveryCharge" placeholder="National delivery charge" value="0" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="section-divider"></div>
+          
+          <div class="form-row">
+            <div class="form-group quarter">
+              <label for="length">Length</label>
+              <input type="text" id="length" name="length" placeholder="Length" required>
+            </div>
+            <div class="form-group quarter">
+              <label for="breath">Breadth</label>
+              <input type="text" id="breath" name="breath" placeholder="Breadth" required>
+            </div>
+            <div class="form-group quarter">
+              <label for="height">Height</label>
+              <input type="text" id="height" name="height" placeholder="Height" required>
+            </div>
+            <div class="form-group quarter">
+              <label for="weight">Weight</label>
+              <input type="text" id="weight" name="weight" placeholder="Weight" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="hsn">HSN</label>
+              <input type="text" id="hsn" name="hsn" placeholder="HSN" required>
+            </div>
+            <div class="form-group half">
+              <label for="taxCode">Tax Code</label>
+              <select id="taxCode" name="taxCode" required>
+                <option value="18" selected>18</option>
+                <option value="12">12</option>
+                <option value="5">5</option>
+                <option value="0">0</option>
+                <option value="28">28</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" name="country" required>
+                <option value="I" selected>India</option>
+                <option value="C">China</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="manufacturerDetails">Manufacturer Details</label>
+            <input type="text" id="manufacturerDetails" name="manufacturerDetails" placeholder="Manufacturer Details" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="packerDetails">Packer Details</label>
+            <input type="text" id="packerDetails" name="packerDetails" placeholder="Packer Details" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="importerDetails">Importer Details</label>
+            <input type="text" id="importerDetails" name="importerDetails" placeholder="Importer Details" required>
+          </div>
+          
+          <div class="form-toggle">
+            <label class="toggle">
+              <input type="checkbox" class="isManufacturingdate" name="isManufacturingdate" style="display:none;">
+              <span class="toggle-slider"></span>
+              <span class="toggle-label">Enable Manufacturing date</span>
+            </label>
+          </div>
+          
+          <div class="ismanuf show conditional-section" id="ismanuf">
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="manudate">Manufacturing date</label>
+                <input type="date" class="manudate" id="manudate" name="manudate" required>
+              </div>
+              <div class="form-group half">
+                <label for="slife">Shelf Life</label>
+                <input type="number" id="slife" name="slife" placeholder="Shelf Life" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="actions-row">
+            <button type="submit" class="action-btn primary-action" id="issaved">Save Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
