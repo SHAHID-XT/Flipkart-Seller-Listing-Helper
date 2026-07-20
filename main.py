@@ -79,7 +79,6 @@ def process_price_adjustment():
         # Extract price from the provided text
         pattern = r'Average price is (\d+)\.'
         match = re.search(pattern, data['data'])
-        
         if match:
             allowed_price = match.group(1)
             price_fix(allowed_price)
@@ -102,4 +101,4 @@ def process_price_adjustment():
 if __name__ == '__main__':
     # Run the Flask application
     print("Starting Flipkart Listing Helper API...")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)

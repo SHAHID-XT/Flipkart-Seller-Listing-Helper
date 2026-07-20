@@ -1,6 +1,6 @@
 # 🚀 Flipkart Auto Listing Automation Tool (Built for Client)
 
-This project automates the **repetitive product listing process on Flipkart Seller Hub**. It was developed commercially for a client who needed to fill the **same set of form fields repeatedly**. The tool includes a **Chrome Extension** for one-time data entry and a **Python Flask backend** that simulates keyboard input to auto-fill the listing form with a single keypress.
+This project automates the **repetitive product listing process on Flipkart Seller Hub**. It was developed commercially for a client who needed to fill the **same set of form fields repeatedly**. The tool includes a **Chrome Extension** for one-time data entry, **profile saving/loading in the popup**, and a **Python Flask backend** that simulates keyboard input to auto-fill the listing form with a single keypress.
 
 ---
 
@@ -10,7 +10,10 @@ The client was manually entering the same product listing data dozens or hundred
 
 ✅ Eliminates repetitive typing
 ✅ Speeds up listing form submission
-✅ Requires zero browser extension interaction after the first run
+✅ Saves reusable product profiles in the popup
+✅ Auto-fills the popup instantly when a saved profile is selected
+✅ Keeps the current draft separate from saved profiles
+✅ Auto-saves changes while you edit
 ✅ Works by simulating real user keyboard input (not DOM injection) — reducing detection risk
 
 ---
@@ -36,10 +39,11 @@ Chrome Local Storage
 
 1. **User opens the extension popup**
 2. Inputs the listing data once (e.g. SKU, price, stock)
-3. Data is saved in Chrome's local storage
-4. When the user visits Flipkart’s form, the extension sends the saved data to the **Flask backend**
-5. The backend uses `keyboard` automation to simulate typing the form fields — **just like a human would**
-6. Next time, the user **presses a key combo** (e.g. `Ctrl + Shift + L`), and the form is auto-filled instantly
+3. Saves it as a profile such as `Product 1`
+4. Selecting a saved profile fills the popup fields instantly
+5. Changes are auto-saved while editing
+6. When the user visits Flipkart’s form, the extension sends the saved data to the **Flask backend**
+7. The backend uses `keyboard` automation to simulate typing the form fields — **just like a human would**
 
 ---
 
@@ -64,6 +68,13 @@ Below are the fields the tool supports:
 
 > The tool can be easily extended to fill more fields as required.
 
+### Popup Workflow
+
+* Save a profile once and reuse it for the same product later.
+* Choose a profile from the dropdown to load its values into the popup.
+* Switch back to **Current draft** to keep editing unsaved work separately.
+* The popup auto-saves edits, so manual save is still available but not required every time.
+
 ---
 
 ## 📁 Project Structure
@@ -72,13 +83,14 @@ Below are the fields the tool supports:
 flipkart-auto-listing/
 ├── chrome-extension/
 │   ├── manifest.json        # Extension manifest (MV3)
-│   ├── popup.html           # UI form for entering listing data
-│   ├── script.js            # Notification system
+│   ├── popup.html           # Popup UI for listing data and profiles
+│   ├── script.js            # Popup logic, autosave, and profile loading
 │   ├── backend.js           # Sends saved data to backend
 │   ├── check.js             # Checks backend status
 │   └── reception-*.svg      # Status indicator icons
 ├── main.py                  # Flask backend server
 ├── utils.py                 # Keyboard automation logic
+├── run-flipkart-server.bat  # Windows launcher for the backend
 └── .gitignore
 ```
 
@@ -98,6 +110,12 @@ pip install flask flask-cors keyboard
 
 ```bash
 python main.py
+```
+
+On Windows, you can also use the batch launcher:
+
+```bash
+run-flipkart-server.bat
 ```
 
 > ⚠️ Run the script in the **foreground**. Do not interact with your keyboard while automation is running.
@@ -121,12 +139,14 @@ python main.py
 1. Open Flipkart Seller Center and go to the product listing page
 2. Click the extension icon
 3. Fill in the listing details in the popup form
-4. Click **Submit** — this saves data locally and triggers the backend
+4. Save the form as a profile if you want to reuse it later
+5. Click **Save Listing** — this saves the current values locally and triggers the backend
 
 ### Repeat Use
 
-* Simply visit the listing page and press your **hotkey** (e.g. `Arrow-Down`)
-* The form will be filled automatically
+* Open the popup and select a saved profile from the dropdown
+* The fields load instantly in the popup
+* Make changes and they auto-save to the active profile or draft
 
 ---
 
